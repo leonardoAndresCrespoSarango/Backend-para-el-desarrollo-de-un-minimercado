@@ -20,7 +20,7 @@ public class BakendApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		User_Entity usuario = new User_Entity("juan", "juan@example.com", "x", "administrador");
+		User_Entity usuario = new User_Entity("juanadf", "juan@example.com", "x", "administrador");
 		userService.insertarUsuario(usuario);
 		System.out.println("Usuario creado: " + usuario.toString());
 	}

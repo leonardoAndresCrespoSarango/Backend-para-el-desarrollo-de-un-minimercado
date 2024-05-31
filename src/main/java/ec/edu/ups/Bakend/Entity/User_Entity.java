@@ -3,7 +3,6 @@ package ec.edu.ups.Bakend.Entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Usuario")
 public class User_Entity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,11 +17,14 @@ public class User_Entity {
     private String rol;
 
     public User_Entity( String nombre, String correo, String contrasenia, String rol) {
-
         this.nombre = nombre;
         Correo = correo;
         Contrasenia = contrasenia;
         this.rol = rol;
+    }
+
+    public User_Entity() {
+
     }
 
     public long getUser_id() {

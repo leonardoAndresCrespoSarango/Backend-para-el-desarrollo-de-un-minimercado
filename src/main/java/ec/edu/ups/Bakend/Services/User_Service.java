@@ -33,14 +33,14 @@ public class User_Service {
         }
     }
 
-    public void eliminarUsuario(int id) {
+    public void eliminarUsuario(long id) {
         User_Entity usuarioExistente = entityManager.find(User_Entity.class, id);
         if (usuarioExistente != null) {
             entityManager.remove(usuarioExistente);
         }
     }
 
-    public User_Entity actualizarUsuario(int id, User_Entity usuarioActualizado) {
+    public User_Entity actualizarUsuario(long id, User_Entity usuarioActualizado) {
         User_Entity usuarioExistente = entityManager.find(User_Entity.class, id);
         if (usuarioExistente != null) {
             usuarioExistente.setNombre(usuarioActualizado.getNombre());
@@ -52,7 +52,7 @@ public class User_Service {
         return usuarioExistente;
     }
 
-    public User_Entity buscarPorId(int id) {
+    public User_Entity buscarPorId(long id) {
         return entityManager.find(User_Entity.class, id);
     }
 

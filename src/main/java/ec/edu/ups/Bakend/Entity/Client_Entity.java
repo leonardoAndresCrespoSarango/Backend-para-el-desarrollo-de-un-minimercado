@@ -8,6 +8,8 @@ public class Client_Entity {
     private long cient_id;
     @Column(name = "client_name")
     private String nombre;
+    @Column(name = "client_personalID",unique = true)
+    private String cedula;
     @Column(name = "client_mail")
     private String correo;
     @Column(name = "client_phone")
@@ -15,6 +17,14 @@ public class Client_Entity {
 
     public Client_Entity() {
 
+    }
+
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
     }
 
     public long getCient_id() {
@@ -54,6 +64,7 @@ public class Client_Entity {
         return "Client_Entity{" +
                 "cient_id=" + cient_id +
                 ", nombre='" + nombre + '\'' +
+                ", cedula='" + cedula + '\'' +
                 ", correo='" + correo + '\'' +
                 ", telefono='" + telefono + '\'' +
                 '}';

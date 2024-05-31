@@ -15,7 +15,7 @@ import java.util.List;
 public class Product_Service {
     @PersistenceContext
     private EntityManager entityManager;
-    public List<Product_Entity> getListarClientes() {
+    public List<Product_Entity> getListarProductos() {
         String jpql = "SELECT u FROM Product_Entity u";
         Query query = entityManager.createQuery(jpql, Product_Entity.class);
         return query.getResultList();

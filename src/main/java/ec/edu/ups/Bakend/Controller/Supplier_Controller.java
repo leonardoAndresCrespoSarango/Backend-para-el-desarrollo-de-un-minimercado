@@ -31,7 +31,7 @@ public class Supplier_Controller {
         }
     }
     @PutMapping("/update_supplier/{id}")
-    public ResponseEntity<String> actualizarUsuario(@PathVariable("id") long id, @RequestBody Supplier_Entity proveedorActualizado) {
+    public ResponseEntity<String> actualizarProveedor(@PathVariable("id") long id, @RequestBody Supplier_Entity proveedorActualizado) {
         Supplier_Entity proveedorActualizadoResultado = supplierService.actualizarProveedor(id, proveedorActualizado);
         if (proveedorActualizadoResultado != null) {
             return ResponseEntity.ok("proveedor actualizado exitosamente");
@@ -40,7 +40,7 @@ public class Supplier_Controller {
         }
     }
     @DeleteMapping("/delete_supplier_by_ID/{id}")
-    public ResponseEntity<String> eliminarUsuario(@PathVariable("id") long id) {
+    public ResponseEntity<String> eliminarProveedor(@PathVariable("id") long id) {
         supplierService.eliminarProveedor(id);
         return ResponseEntity.ok("proveedor eliminado exitosamente");
     }
@@ -57,7 +57,7 @@ public class Supplier_Controller {
 
 
     @GetMapping("/search_supplier_by_name/{nombre}")
-    public ResponseEntity<Supplier_Entity> buscarUsu(@PathVariable("nombre") String usu) {
+    public ResponseEntity<Supplier_Entity> buscarProveedor(@PathVariable("nombre") String usu) {
         Supplier_Entity proveedorEncontrado = supplierService.buscarPorProveedorNombre(usu);
         if (proveedorEncontrado != null) {
             return ResponseEntity.ok(proveedorEncontrado);

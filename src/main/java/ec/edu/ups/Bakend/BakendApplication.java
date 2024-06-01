@@ -15,10 +15,7 @@ public class BakendApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BakendApplication.class, args);
-		LocalDateTime fechaActual = LocalDateTime.now();
-		System.out.println("Fecha actual: " + fechaActual);
-		Sale_Entity sale = new Sale_Entity();
-		sale.setFecha_venta(fechaActual);
+
 	}
 
 

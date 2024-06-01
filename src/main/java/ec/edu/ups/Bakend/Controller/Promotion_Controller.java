@@ -58,7 +58,7 @@ public class Promotion_Controller {
 
 
     @GetMapping("/search_promotion_by_name/{name}")
-    public ResponseEntity<Promotion_Entity> buscarUsu(@PathVariable("name") String name) {
+    public ResponseEntity<Promotion_Entity> buscarPromocion(@PathVariable("name") String name) {
         Promotion_Entity promocionEncontrado = promotionService.buscarPorPromocionNombre(name);
         if (promocionEncontrado != null) {
             return ResponseEntity.ok(promocionEncontrado);

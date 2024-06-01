@@ -1,4 +1,6 @@
 package ec.edu.ups.Bakend.Entity;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -12,8 +14,10 @@ public class Promotion_Entity {
     @Column(name = "order_detail")
     private String descripcion;
     @Column(name = "order_startDate")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime fechaInicio;
     @Column(name = "order_endDate")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime fechaFin;
 
     public Promotion_Entity() {

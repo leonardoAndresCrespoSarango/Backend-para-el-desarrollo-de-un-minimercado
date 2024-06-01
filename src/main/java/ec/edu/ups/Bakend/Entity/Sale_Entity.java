@@ -1,4 +1,6 @@
 package ec.edu.ups.Bakend.Entity;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -7,7 +9,9 @@ public class Sale_Entity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long sale_id;
+
     @Column(name = "sale_date")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime fecha_venta;
     @Column(name = "sale_clientID")
     private String cliente_id;

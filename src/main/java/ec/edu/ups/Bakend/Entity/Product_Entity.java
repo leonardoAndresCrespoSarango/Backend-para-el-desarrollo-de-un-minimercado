@@ -15,8 +15,8 @@ public class Product_Entity {
     private String categoria;
     @Column(name = "product_unitPrice")
     private String precioUnitario;
-    @Column(name = "product_stock")
-    private int stock;
+    @Column(name = "product_stockID")
+    private long stock;
 
     public Product_Entity() {
     }
@@ -61,11 +61,11 @@ public class Product_Entity {
         this.precioUnitario = precioUnitario;
     }
 
-    public int getStock() {
+    public long getStock() {
         return stock;
     }
 
-    public void setStock(int stock) {
+    public void setStock(long stock) {
         this.stock = stock;
     }
 

@@ -9,7 +9,7 @@ public class Stock_Entity {
     private long stock_id;
     @Column(name = "stock_amount")
     private long cantidad;
-    @Column(name = "stock_supplier")
+    @Column(name = "stock_supplierID")
     private long proveedorid;
 
     public Stock_Entity() {

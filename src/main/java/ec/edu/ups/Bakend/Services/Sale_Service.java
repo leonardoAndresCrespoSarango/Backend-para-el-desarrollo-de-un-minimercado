@@ -43,10 +43,10 @@ public class Sale_Service {
         return entityManager.find(Sale_Entity.class, id);
     }
 
-    public Sale_Entity buscarPorVentaClienteID(String nombre) {
-        String jpql = "SELECT u FROM Sale_Entity u WHERE u.cliente_id = :nombre";
+    public Sale_Entity buscarPorVentaClienteID(long id) {
+        String jpql = "SELECT u FROM Sale_Entity u WHERE u.cliente_id = :id";
         Query query = entityManager.createQuery(jpql, Sale_Entity.class);
-        query.setParameter("nombre", nombre);
+        query.setParameter("id", id);
         List<Sale_Entity> venta = query.getResultList();
         if (!venta.isEmpty()) {
             return venta.get(0);

@@ -48,7 +48,7 @@ public class Product_Service {
         return productoExistente;
     }
 
-    public Product_Entity buscarPorIdVenta(long id) {
+    public Product_Entity buscarPorIdProducto(long id) {
         return entityManager.find(Product_Entity.class, id);
     }
 

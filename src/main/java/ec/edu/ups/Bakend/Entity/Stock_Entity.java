@@ -1,7 +1,6 @@
 package ec.edu.ups.Bakend.Entity;
 import javax.persistence.*;
 
-
 @Entity
 public class Stock_Entity {
     @Id

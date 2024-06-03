@@ -1,6 +1,8 @@
 package ec.edu.ups.Bakend.Entity;
 import javax.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class Client_Entity {
     @Id
@@ -14,6 +16,14 @@ public class Client_Entity {
     private String correo;
     @Column(name = "client_phone")
     private String telefono;
+
+
+    @OneToMany(mappedBy = "cliente")
+    private List<Sale_Entity> sales;
+
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User_Entity user;
 
     public Client_Entity() {
 

@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+import java.util.List;
+
+
 @Entity
 public class Order_Entity {
     @Id
@@ -17,6 +20,10 @@ public class Order_Entity {
     @Column(name = "order_deadline")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime fechaEntrega;
+
+    @OneToMany(mappedBy = "order")
+    private List<Product_Entity> products;
+
 
     public Order_Entity() {
     }

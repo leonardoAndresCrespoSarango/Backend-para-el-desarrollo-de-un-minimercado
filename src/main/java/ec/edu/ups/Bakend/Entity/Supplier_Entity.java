@@ -1,5 +1,9 @@
 package ec.edu.ups.Bakend.Entity;
 import javax.persistence.*;
+
+import java.util.List;
+
+
 @Entity
 public class Supplier_Entity {
     @Id
@@ -15,6 +19,10 @@ public class Supplier_Entity {
     private String telefono;
     @Column(name = "supplier_userID")
     private long usuarioid;
+
+    @OneToMany(mappedBy = "supplier")
+    private List<Product_Entity> products;
+
 
     public Supplier_Entity() {
     }

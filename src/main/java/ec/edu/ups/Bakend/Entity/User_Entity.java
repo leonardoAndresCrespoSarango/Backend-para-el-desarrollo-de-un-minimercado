@@ -16,6 +16,11 @@ public class User_Entity {
     @Column(name = "user_rol")
     private String rol;
 
+
+    @OneToOne(mappedBy = "user")
+    private Client_Entity client;
+
+
     public User_Entity( String nombre, String correo, String contrasenia, String rol) {
         this.nombre = nombre;
         Correo = correo;

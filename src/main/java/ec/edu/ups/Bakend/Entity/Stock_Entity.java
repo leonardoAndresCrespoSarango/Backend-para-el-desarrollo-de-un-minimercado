@@ -11,6 +11,12 @@ public class Stock_Entity {
     @Column(name = "stock_supplierID")
     private long proveedorid;
 
+
+    @OneToOne
+    @JoinColumn(name = "product_id")
+    private Product_Entity product;
+
+
     public Stock_Entity() {
     }
 

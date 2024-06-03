@@ -3,6 +3,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
+
 
 @Entity
 public class Promotion_Entity {
@@ -19,6 +21,11 @@ public class Promotion_Entity {
     @Column(name = "order_endDate")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime fechaFin;
+
+
+    @ManyToMany(mappedBy = "promociones")
+    private List<Product_Entity> productos;
+
 
     public Promotion_Entity() {
     }

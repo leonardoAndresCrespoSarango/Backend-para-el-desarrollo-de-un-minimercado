@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+import java.util.List;
+
+
 @Entity
 public class Sale_Entity {
     @Id
@@ -17,6 +20,15 @@ public class Sale_Entity {
     private String cliente_id;
     @Column(name = "sale_total")
     private double total;
+
+
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Client_Entity cliente;
+
+    @OneToMany(mappedBy = "sale")
+    private List<Sale_Detail_Entity> saleDetails;
+
 
     public Sale_Entity() {}
 

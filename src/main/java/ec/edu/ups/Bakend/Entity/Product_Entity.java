@@ -1,6 +1,8 @@
 package ec.edu.ups.Bakend.Entity;
 import javax.persistence.*;
 
+import java.util.List;
+
 
 @Entity
 public class Product_Entity {
@@ -17,6 +19,26 @@ public class Product_Entity {
     private String precioUnitario;
     @Column(name = "product_stockID")
     private long stock;
+
+   
+    @OneToMany(mappedBy = "producto")
+    private List<Sale_Detail_Entity> saleDetails;
+
+    @ManyToMany
+    @JoinTable(
+        name = "producto_promocion",
+        joinColumns = @JoinColumn(name = "producto_id"),
+        inverseJoinColumns = @JoinColumn(name = "promocion_id")
+    )
+    private List<Promotion_Entity> promociones;
+
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order_Entity order;
+
+    @ManyToOne
+    @JoinColumn(name = "supplier_id")
+    private Supplier_Entity supplier;
 
     public Product_Entity() {
     }

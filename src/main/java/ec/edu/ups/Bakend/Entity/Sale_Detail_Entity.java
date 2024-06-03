@@ -16,6 +16,15 @@ public class Sale_Detail_Entity {
     @Column(name = "saleDet_price")
     private double precio;
 
+
+    @ManyToOne
+    @JoinColumn(name = "producto_id")
+    private Product_Entity producto;
+
+    @ManyToOne
+    @JoinColumn(name = "sale_id")
+    private Sale_Entity sale;
+
     public Sale_Detail_Entity() {
     }
 

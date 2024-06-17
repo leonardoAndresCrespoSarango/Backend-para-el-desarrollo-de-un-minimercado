@@ -1,0 +1,179 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > Supplier_Service</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">ec.edu.ups.Bakend.Services</a>
+</div>
+
+<h1>Coverage Summary for Class: Supplier_Service (ec.edu.ups.Bakend.Services)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Supplier_Service</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (3/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    95,8%
+  </span>
+  <span class="absValue">
+    (23/24)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package ec.edu.ups.Bakend.Services;
+&nbsp;
+&nbsp;
+&nbsp;import ec.edu.ups.Bakend.Entity.Supplier_Entity;
+&nbsp;import org.springframework.stereotype.Service;
+&nbsp;
+&nbsp;import javax.persistence.EntityManager;
+&nbsp;import javax.persistence.PersistenceContext;
+&nbsp;import javax.persistence.Query;
+&nbsp;import javax.transaction.Transactional;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;@Service
+&nbsp;@Transactional
+<b class="fc">&nbsp;public class Supplier_Service {</b>
+&nbsp;    @PersistenceContext
+&nbsp;    private EntityManager entityManager;
+&nbsp;
+&nbsp;    public List&lt;Supplier_Entity&gt; getListarProveedores() {
+<b class="fc">&nbsp;        String jpql = &quot;SELECT u FROM Supplier_Entity u&quot;;</b>
+<b class="fc">&nbsp;        Query query = entityManager.createQuery(jpql, Supplier_Entity.class);</b>
+<b class="fc">&nbsp;        return query.getResultList();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void insertarProveedor(Supplier_Entity proveedor) {
+<b class="fc">&nbsp;        entityManager.persist(proveedor);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void eliminarProveedor(long id) {
+<b class="fc">&nbsp;        Supplier_Entity proveedorExistente = entityManager.find(Supplier_Entity.class, id);</b>
+<b class="pc">&nbsp;        if (proveedorExistente != null) {</b>
+<b class="fc">&nbsp;            entityManager.remove(proveedorExistente);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public Supplier_Entity actualizarProveedor(long id, Supplier_Entity proveedorActualizado) {
+<b class="fc">&nbsp;        Supplier_Entity proveedorExistente = entityManager.find(Supplier_Entity.class, id);</b>
+<b class="pc">&nbsp;        if (proveedorExistente != null) {</b>
+<b class="fc">&nbsp;            proveedorExistente.setNombre(proveedorActualizado.getNombre());</b>
+<b class="fc">&nbsp;            proveedorExistente.setContacto(proveedorActualizado.getContacto());</b>
+<b class="fc">&nbsp;            proveedorExistente.setDireccion(proveedorActualizado.getDireccion());</b>
+<b class="fc">&nbsp;            proveedorExistente.setTelefono(proveedorActualizado.getTelefono());</b>
+<b class="fc">&nbsp;            entityManager.merge(proveedorExistente);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return proveedorExistente;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Supplier_Entity buscarPorId(long id) {
+<b class="fc">&nbsp;        return entityManager.find(Supplier_Entity.class, id);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Supplier_Entity buscarPorProveedorNombre(String nombre) {
+<b class="fc">&nbsp;        String jpql = &quot;SELECT u FROM Supplier_Entity u WHERE u.nombre = :nombre&quot;;</b>
+<b class="fc">&nbsp;        Query query = entityManager.createQuery(jpql, Supplier_Entity.class);</b>
+<b class="fc">&nbsp;        query.setParameter(&quot;nombre&quot;, nombre);</b>
+<b class="fc">&nbsp;        List&lt;Supplier_Entity&gt; proveedor = query.getResultList();</b>
+<b class="pc">&nbsp;        if (!proveedor.isEmpty()) {</b>
+<b class="fc">&nbsp;            return proveedor.get(0);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        return null;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-06-16 18:08</div>
+</div>
+</body>
+</html>

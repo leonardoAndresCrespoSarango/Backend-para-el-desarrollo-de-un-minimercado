@@ -1,0 +1,165 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > Stock_Service</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">ec.edu.ups.Bakend.Services</a>
+</div>
+
+<h1>Coverage Summary for Class: Stock_Service (ec.edu.ups.Bakend.Services)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Stock_Service</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (2/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (14/14)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package ec.edu.ups.Bakend.Services;
+&nbsp;
+&nbsp;
+&nbsp;import ec.edu.ups.Bakend.Entity.Stock_Entity;
+&nbsp;import org.springframework.stereotype.Service;
+&nbsp;
+&nbsp;import javax.persistence.EntityManager;
+&nbsp;import javax.persistence.PersistenceContext;
+&nbsp;import javax.persistence.Query;
+&nbsp;import javax.transaction.Transactional;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;@Service
+&nbsp;@Transactional
+<b class="fc">&nbsp;public class Stock_Service {</b>
+&nbsp;    @PersistenceContext
+&nbsp;    private EntityManager entityManager;
+&nbsp;
+&nbsp;    public List&lt;Stock_Entity&gt; getListarStock() {
+<b class="fc">&nbsp;        String jpql = &quot;SELECT u FROM Stock_Entity u&quot;;</b>
+<b class="fc">&nbsp;        Query query = entityManager.createQuery(jpql, Stock_Entity.class);</b>
+<b class="fc">&nbsp;        return query.getResultList();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void insertarStock(Stock_Entity stock) {
+<b class="fc">&nbsp;        entityManager.persist(stock);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void eliminarStock(long id) {
+<b class="fc">&nbsp;        Stock_Entity stockExistente = entityManager.find(Stock_Entity.class, id);</b>
+<b class="pc">&nbsp;        if (stockExistente != null) {</b>
+<b class="fc">&nbsp;            entityManager.remove(stockExistente);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public Stock_Entity actualizarStock(long id, Stock_Entity stockActualizado) {
+<b class="fc">&nbsp;        Stock_Entity stockExistente = entityManager.find(Stock_Entity.class, id);</b>
+<b class="pc">&nbsp;        if (stockExistente != null) {</b>
+<b class="fc">&nbsp;            stockExistente.setCantidad(stockActualizado.getCantidad());</b>
+<b class="fc">&nbsp;            entityManager.merge(stockExistente);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return stockExistente;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Stock_Entity buscarPorId(long id) {
+<b class="fc">&nbsp;        return entityManager.find(Stock_Entity.class, id);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-06-16 18:08</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,179 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > Product_Service</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">ec.edu.ups.Bakend.Services</a>
+</div>
+
+<h1>Coverage Summary for Class: Product_Service (ec.edu.ups.Bakend.Services)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Product_Service</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (2/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (18/18)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package ec.edu.ups.Bakend.Services;
+&nbsp;
+&nbsp;
+&nbsp;import ec.edu.ups.Bakend.Entity.Product_Entity;
+&nbsp;import org.springframework.stereotype.Service;
+&nbsp;
+&nbsp;import javax.persistence.EntityManager;
+&nbsp;import javax.persistence.PersistenceContext;
+&nbsp;import javax.persistence.Query;
+&nbsp;import javax.transaction.Transactional;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;@Service
+&nbsp;@Transactional
+<b class="fc">&nbsp;public class Product_Service {</b>
+&nbsp;    @PersistenceContext
+&nbsp;    private EntityManager entityManager;
+&nbsp;    public List&lt;Product_Entity&gt; getListarProductos() {
+<b class="fc">&nbsp;        String jpql = &quot;SELECT u FROM Product_Entity u&quot;;</b>
+<b class="fc">&nbsp;        Query query = entityManager.createQuery(jpql, Product_Entity.class);</b>
+<b class="fc">&nbsp;        return query.getResultList();</b>
+&nbsp;    }
+&nbsp;    public void insertarProduccto(Product_Entity producto) {
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;            entityManager.persist(producto);</b>
+&nbsp;
+&nbsp;    }
+&nbsp;    public void eliminarProducto(long id) {
+<b class="fc">&nbsp;        Product_Entity productoExistente = entityManager.find(Product_Entity.class, id);</b>
+<b class="pc">&nbsp;        if (productoExistente != null) {</b>
+<b class="fc">&nbsp;            entityManager.remove(productoExistente);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public Product_Entity actualizarProducto(long id, Product_Entity productoActualizado) {
+<b class="fc">&nbsp;        Product_Entity productoExistente = entityManager.find(Product_Entity.class, id);</b>
+<b class="pc">&nbsp;        if (productoExistente != null) {</b>
+<b class="fc">&nbsp;            productoExistente.setNombre(productoActualizado.getNombre());</b>
+<b class="fc">&nbsp;            productoExistente.setDescripcion(productoActualizado.getDescripcion());</b>
+<b class="fc">&nbsp;            productoExistente.setCategoria(productoActualizado.getCategoria());</b>
+<b class="fc">&nbsp;            productoExistente.setPrecioUnitario(productoActualizado.getPrecioUnitario());</b>
+<b class="fc">&nbsp;            productoExistente.setStock(productoActualizado.getStock());</b>
+<b class="fc">&nbsp;            entityManager.merge(productoExistente);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return productoExistente;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Product_Entity buscarPorIdProducto(long id) {
+<b class="fc">&nbsp;        return entityManager.find(Product_Entity.class, id);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /*public Product_Entity buscarPorProductoNombre(String nombre) {
+&nbsp;        String jpql = &quot;SELECT u FROM Product_Entity u WHERE u.nombre = :nombre&quot;;
+&nbsp;        Query query = entityManager.createQuery(jpql, Product_Entity.class);
+&nbsp;        query.setParameter(&quot;nombre&quot;, nombre);
+&nbsp;        List&lt;Product_Entity&gt; producto = query.getResultList();
+&nbsp;        if (!producto.isEmpty()) {
+&nbsp;            return producto.get(0);
+&nbsp;        }
+&nbsp;        return null;
+&nbsp;    }*/
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-06-16 18:08</div>
+</div>
+</body>
+</html>

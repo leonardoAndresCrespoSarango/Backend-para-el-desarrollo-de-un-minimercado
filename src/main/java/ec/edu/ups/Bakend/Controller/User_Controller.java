@@ -5,6 +5,7 @@ import ec.edu.ups.Bakend.Services.User_Service;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -88,6 +89,17 @@ public class User_Controller {
             return ResponseEntity.ok(usuarioEncontrado);
         } else {
             return ResponseEntity.notFound().build();
+        }
+    }
+
+
+    @PostMapping("/authenticate")
+    public ResponseEntity<?> authenticateUser(@RequestBody User_Entity usuario) {
+        User_Entity usuarioEncontrado = userService.buscarPorUsuarioYContrasenia(usuario.getNombre(), usuario.getContrasenia());
+        if (usuarioEncontrado != null) {
+            return ResponseEntity.ok(usuarioEncontrado);
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
         }
     }
 }

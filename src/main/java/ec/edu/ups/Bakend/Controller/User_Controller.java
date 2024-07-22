@@ -1,5 +1,6 @@
 package ec.edu.ups.Bakend.Controller;
 
+import ec.edu.ups.Bakend.Entity.Product_Entity;
 import ec.edu.ups.Bakend.Entity.User_Entity;
 import ec.edu.ups.Bakend.Services.User_Service;
 import io.swagger.v3.oas.annotations.Operation;
@@ -52,10 +53,25 @@ public class User_Controller {
         }
     }
 
+    @PutMapping("/updateUsu")
+    public ResponseEntity<String> actualizarUsuarios(@RequestBody User_Entity usuarioActualizado) {
+        User_Entity usuarioActualizadoResultado = userService.actualizarUsuario(usuarioActualizado.getUser_id(), usuarioActualizado);
+        if (usuarioActualizadoResultado != null) {
+            return ResponseEntity.ok("Usuario actualizado exitosamente");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
     @Operation(summary = "Eliminar un usuario", description = "Elimina un usuario según su ID")
     @DeleteMapping("/delete_user_by_ID/{id}")
     public ResponseEntity<String> eliminarUsuario(@PathVariable("id") long id) {
         userService.eliminarUsuario(id);
+        return ResponseEntity.ok("Usuario eliminado exitosamente");
+    }
+
+    @DeleteMapping("/deleteUsu")
+    public ResponseEntity<String> eliminarUsuarios(@RequestBody User_Entity usuarioEliminado) {
+        userService.eliminarUsuario(usuarioEliminado.getUser_id());
         return ResponseEntity.ok("Usuario eliminado exitosamente");
     }
 

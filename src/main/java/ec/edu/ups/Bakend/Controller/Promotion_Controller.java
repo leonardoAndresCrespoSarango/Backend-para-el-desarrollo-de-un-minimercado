@@ -49,11 +49,26 @@ public class Promotion_Controller {
             return ResponseEntity.notFound().build();
         }
     }
+    @PutMapping("/updateProm")
+    public ResponseEntity<String> actualizarPromociones(@RequestBody Promotion_Entity promocionActualizado) {
+        Promotion_Entity promocionActualizadoResultado = promotionService.actualizarPromocion(promocionActualizado.getPromotion_id(), promocionActualizado);
+        if (promocionActualizadoResultado != null) {
+            return ResponseEntity.ok("Promoción actualizada exitosamente");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
     @Operation(summary = "Eliminar una promoción", description = "Elimina una promoción según su ID")
     @DeleteMapping("/delete_promotion_by_ID/{id}")
     public ResponseEntity<String> eliminarPromocion(@PathVariable("id") long id) {
         promotionService.eliminarPromocion(id);
+        return ResponseEntity.ok("Promoción eliminada exitosamente");
+    }
+
+    @DeleteMapping("/deleteProm")
+    public ResponseEntity<String> eliminarPromociones(@RequestBody Promotion_Entity promocionEliminada) {
+        promotionService.eliminarPromocion(promocionEliminada.getPromotion_id());
         return ResponseEntity.ok("Promoción eliminada exitosamente");
     }
 

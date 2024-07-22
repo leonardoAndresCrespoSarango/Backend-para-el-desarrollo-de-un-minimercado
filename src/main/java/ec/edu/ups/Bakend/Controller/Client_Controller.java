@@ -49,6 +49,15 @@ public class Client_Controller {
             return ResponseEntity.notFound().build();
         }
     }
+    @PutMapping("/updateCli")
+    public ResponseEntity<String> actualizarClientes( @RequestBody Client_Entity clienteActualizado) {
+        Client_Entity clienteActualizadoResultado = clientService.actualizarClinte(clienteActualizado.getCient_id(), clienteActualizado);
+        if (clienteActualizadoResultado != null) {
+            return ResponseEntity.ok("Cliente actualizado exitosamente");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
     @Operation(summary = "Eliminar un cliente", description = "Elimina un cliente según su ID")
     @DeleteMapping("/delete_client_by_ID/{id}")

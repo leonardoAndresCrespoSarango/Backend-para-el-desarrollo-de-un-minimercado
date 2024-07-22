@@ -17,9 +17,11 @@ public class Promotion_Entity {
     private String descripcion;
     @Column(name = "order_startDate")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    //@JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime fechaInicio;
     @Column(name = "order_endDate")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    //@JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime fechaFin;
 
 

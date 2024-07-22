@@ -51,13 +51,26 @@ public class Supplier_Controller {
         }
     }
 
+    @PutMapping("/updateSup")
+    public ResponseEntity<String> actualizarProveedores(@RequestBody Supplier_Entity proveedorActualizado) {
+        Supplier_Entity proveedorActualizadoResultado = supplierService.actualizarProveedor(proveedorActualizado.getSupplier_id(), proveedorActualizado);
+        if (proveedorActualizadoResultado != null) {
+            return ResponseEntity.ok("Proveedor actualizado exitosamente");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
     @Operation(summary = "Eliminar un proveedor", description = "Elimina un proveedor según su ID")
     @DeleteMapping("/delete_supplier_by_ID/{id}")
     public ResponseEntity<String> eliminarProveedor(@PathVariable("id") long id) {
         supplierService.eliminarProveedor(id);
         return ResponseEntity.ok("Proveedor eliminado exitosamente");
     }
-
+    @DeleteMapping("/deleteSup")
+    public ResponseEntity<String> eliminarProveedores(@RequestBody Supplier_Entity proveedorEliminado) {
+        supplierService.eliminarProveedor(proveedorEliminado.getSupplier_id());
+        return ResponseEntity.ok("Proveedor eliminado exitosamente");
+    }
     @Operation(summary = "Buscar proveedor por ID", description = "Busca un proveedor según su ID")
     @GetMapping("/search_supplier_by_ID/{id}")
     public ResponseEntity<Supplier_Entity> buscarPorId(@PathVariable("id") long id) {

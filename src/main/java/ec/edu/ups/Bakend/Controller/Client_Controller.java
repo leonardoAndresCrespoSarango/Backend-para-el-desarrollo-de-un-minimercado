@@ -65,6 +65,11 @@ public class Client_Controller {
         clientService.eliminarCliente(id);
         return ResponseEntity.ok("Cliente eliminado exitosamente");
     }
+    @DeleteMapping("/deleteCli")
+    public ResponseEntity<String> eliminarClientes( @RequestBody Client_Entity clienteEliminado) {
+        clientService.eliminarCliente(clienteEliminado.getCient_id());
+        return ResponseEntity.ok("Cliente eliminado exitosamente");
+    }
 
     @Operation(summary = "Buscar cliente por ID", description = "Busca un cliente según su ID")
     @GetMapping("/search_client_by_ID/{id}")

@@ -49,11 +49,26 @@ public class Producto_Controller {
             return ResponseEntity.notFound().build();
         }
     }
+    @PutMapping("/updatePro")
+    public ResponseEntity<String> actualizarProductos(@RequestBody Product_Entity productoActualizado) {
+        Product_Entity productoActualizadoResultado = productService.actualizarProducto(productoActualizado.getProduct_id(), productoActualizado);
+        if (productoActualizadoResultado != null) {
+            return ResponseEntity.ok("Producto actualizado exitosamente");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
     @Operation(summary = "Eliminar un producto", description = "Elimina un producto según su ID")
     @DeleteMapping("/delete_product_by_ID/{id}")
     public ResponseEntity<String> eliminarProducto(@PathVariable("id") long id) {
         productService.eliminarProducto(id);
+        return ResponseEntity.ok("Producto eliminado exitosamente");
+    }
+
+    @DeleteMapping("/deletePro")
+    public ResponseEntity<String> eliminarProductos(@RequestBody Product_Entity productoActualizado) {
+        productService.eliminarProducto(productoActualizado.getProduct_id());
         return ResponseEntity.ok("Producto eliminado exitosamente");
     }
 

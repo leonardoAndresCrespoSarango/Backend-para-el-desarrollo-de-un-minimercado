@@ -21,6 +21,10 @@ public class Order_Entity {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime fechaEntrega;
 
+    //Conexión producto
+    @Column(name= "order_productID")
+    private long product_id;
+
     @OneToMany(mappedBy = "order")
     private List<Product_Entity> products;
 
@@ -60,6 +64,14 @@ public class Order_Entity {
         this.fechaEntrega = fechaEntrega;
     }
 
+    //Getter y setter producto
+    public long getProduct_id() {
+        return product_id;
+    }
+    public void setProduct_id(long product_id) {
+        this.product_id = product_id;
+    }
+
     @Override
     public String toString() {
         return "Order_Entity{" +
@@ -67,6 +79,8 @@ public class Order_Entity {
                 ", proveedorid=" + proveedorid +
                 ", fechaPedido=" + fechaPedido +
                 ", fechaEntrega=" + fechaEntrega +
+                ", product_id=" + product_id +
+                ", products=" + products +
                 '}';
     }
 }

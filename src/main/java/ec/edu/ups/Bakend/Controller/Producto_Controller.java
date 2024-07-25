@@ -82,6 +82,16 @@ public class Producto_Controller {
             return ResponseEntity.notFound().build();
         }
     }
+    @GetMapping("/search_product_by_ID")
+    public ResponseEntity<Product_Entity> buscarPorIdO(@RequestBody Product_Entity productoABuscar ) {
+        Product_Entity productoEncontrado = productService.buscarPorIdProducto(productoABuscar.getProduct_id());
+        if (productoEncontrado != null) {
+            return ResponseEntity.ok(productoEncontrado);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 
     @Operation(summary = "Buscar producto por nombre", description = "Busca un producto según su nombre")
     @GetMapping("/search_product_by_name/{nombre}")

@@ -48,6 +48,17 @@ public class Product_Service {
         return productoExistente;
     }
 
+    //Metodo para aumentar stock del pedido
+    public Product_Entity actualizarStockProducto(long id, long stock) {
+        Product_Entity productoExistente = entityManager.find(Product_Entity.class, id);
+        if (productoExistente != null) {
+            productoExistente.setStock(productoExistente.getStock()+stock);
+            entityManager.merge(productoExistente);
+        }
+        return productoExistente;
+    }
+
+
     public Product_Entity buscarPorIdProducto(long id) {
         return entityManager.find(Product_Entity.class, id);
     }

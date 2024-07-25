@@ -12,12 +12,14 @@ public class Sale_Entity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long sale_id;
-
+    @Column(name = "sale_numeroVenta")
+    private String numero_venta;
     @Column(name = "sale_date")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime fecha_venta;
     @Column(name = "sale_clientID")
     private String cliente_id;
+    
     @Column(name = "sale_total")
     private double total;
 
@@ -62,6 +64,14 @@ public class Sale_Entity {
 
     public void setTotal(double total) {
         this.total = total;
+    }
+
+    public String getNumero_venta() {
+        return numero_venta;
+    }
+
+    public void setNumero_venta(String numero_venta) {
+        this.numero_venta = numero_venta;
     }
 
     @Override

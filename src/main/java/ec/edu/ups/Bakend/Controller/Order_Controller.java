@@ -57,6 +57,12 @@ public class Order_Controller {
         return ResponseEntity.ok("Pedido eliminado exitosamente");
     }
 
+    @DeleteMapping("/delete_order")
+    public ResponseEntity<String> eliminarPedidos(@RequestBody Order_Entity pedidoEliminado) {
+        orderService.eliminarPedido(pedidoEliminado.getOrder_id());
+        return ResponseEntity.ok("Pedido eliminado exitosamente");
+    }
+
     @Operation(summary = "Buscar pedido por ID", description = "Busca un pedido según su ID")
     @GetMapping("/search_order_by_ID/{id}")
     public ResponseEntity<Order_Entity> buscarPorId(@PathVariable("id") long id) {

@@ -93,6 +93,8 @@ public class Producto_Controller {
     }
 
 
+
+
     @Operation(summary = "Buscar producto por nombre", description = "Busca un producto según su nombre")
     @GetMapping("/search_product_by_name/{nombre}")
     public ResponseEntity<Product_Entity> buscarProducto(@PathVariable("nombre") String nombre) {

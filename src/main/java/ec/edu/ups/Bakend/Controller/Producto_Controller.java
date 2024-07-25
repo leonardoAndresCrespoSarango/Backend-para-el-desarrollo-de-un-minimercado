@@ -60,6 +60,16 @@ public class Producto_Controller {
         }
     }
 
+    @PutMapping("/update_productV1/{id}")
+    public ResponseEntity<String> actualizarStockProductoV1(@PathVariable("id") long id, @RequestBody Product_Entity productoActualizado) {
+        Product_Entity productoActualizadoResultado = productService.actualizarStockProducto(id, productoActualizado.getStock());
+        if (productoActualizadoResultado != null) {
+            return ResponseEntity.ok("Producto actualizado exitosamente");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 
     @PutMapping("/updatePro")
     public ResponseEntity<String> actualizarProductos(@RequestBody Product_Entity productoActualizado) {

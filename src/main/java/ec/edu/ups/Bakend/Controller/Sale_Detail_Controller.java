@@ -65,7 +65,7 @@ public class Sale_Detail_Controller {
     @DeleteMapping("/delete_saleDetailV1")
     public ResponseEntity<String> eliminarVentaDetalles(@RequestBody Sale_Detail_Entity ventaDetailleEliminar) {
         //Buscamos y actualizamos stock
-        productService.actualizarStockProducto(ventaDetailleEliminar.getProduct_id(), ventaDetailleEliminar.getCantidad());
+        //Product_Entity productoActualizadoResultado = productService.actualizarStockProducto(ventaDetailleEliminar.getProduct_id(), ventaDetailleEliminar.getCantidad());
         saleDetService.eliminarVentaDetalle(ventaDetailleEliminar.getSaleDet_id());
         return ResponseEntity.ok("Detalle de venta eliminado exitosamente");
     }

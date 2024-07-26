@@ -96,4 +96,9 @@ public class Sale_Detail_Controller {
     public List<Sale_Detail_Entity> obtenerTodosLosItemsPorIDVenta(@PathVariable("id") long id) {
         return saleDetService.getListarVentasPorIDCabecera(id);
     }
+
+    @GetMapping("/total-price/{saleId}")
+    public Double getTotalPriceBySaleId(@PathVariable Long saleId) {
+        return saleDetService.getTotalPricesBySaleId(saleId);
+    }
 }

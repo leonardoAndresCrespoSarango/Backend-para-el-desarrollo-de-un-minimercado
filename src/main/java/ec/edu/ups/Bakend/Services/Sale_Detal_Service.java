@@ -61,4 +61,12 @@ public class Sale_Detal_Service {
         query.setParameter("id", id);
         return query.getResultList();
     }
+
+    public Double getTotalPricesBySaleId(Long saleId) {
+        String jpql = "SELECT SUM(sd.precio) FROM Sale_Detail_Entity sd WHERE sd.sale_id = :saleId";
+        Query query = entityManager.createQuery(jpql);
+        query.setParameter("saleId", saleId);
+        Double total = (Double) query.getSingleResult();
+        return total != null ? total : 0.0;
+    }
 }

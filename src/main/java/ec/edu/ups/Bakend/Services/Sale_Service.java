@@ -53,4 +53,17 @@ public class Sale_Service {
         }
         return null;
     }
+
+    public Sale_Entity buscarPorVentaNumeroVenta(String numero_venta) {
+        String jpql = "SELECT u FROM Sale_Entity u WHERE u.numero_venta = :numero_venta";
+        Query query = entityManager.createQuery(jpql, Sale_Entity.class);
+        query.setParameter("numero_venta", numero_venta);
+        List<Sale_Entity> venta = query.getResultList();
+        if (!venta.isEmpty()) {
+            return venta.get(0);
+        }
+        return null;
+    }
+
+
 }

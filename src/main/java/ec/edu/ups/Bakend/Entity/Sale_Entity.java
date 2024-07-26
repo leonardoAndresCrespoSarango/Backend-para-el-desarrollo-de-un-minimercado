@@ -19,7 +19,7 @@ public class Sale_Entity {
     private LocalDateTime fecha_venta;
     @Column(name = "sale_clientID")
     private String cliente_id;
-    
+
     @Column(name = "sale_total")
     private double total;
 

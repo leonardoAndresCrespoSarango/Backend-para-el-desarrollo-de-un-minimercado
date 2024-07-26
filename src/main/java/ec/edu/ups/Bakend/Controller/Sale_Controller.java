@@ -79,4 +79,14 @@ public class Sale_Controller {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping("/search_sale_by_numeroV/{numeroventa}")
+    public ResponseEntity<Sale_Entity> buscarPorNumeroVenta(@PathVariable("numeroventa") String numero_venta) {
+        Sale_Entity ventaEncontrado = saleService.buscarPorVentaNumeroVenta(numero_venta);
+        if (ventaEncontrado != null) {
+            return ResponseEntity.ok(ventaEncontrado);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

@@ -1,6 +1,8 @@
 package ec.edu.ups.Bakend.Controller;
 
 import ec.edu.ups.Bakend.Entity.Sale_Detail_Entity;
+import ec.edu.ups.Bakend.Entity.Product_Entity;
+import ec.edu.ups.Bakend.Services.Product_Service;
 import ec.edu.ups.Bakend.Services.Sale_Detal_Service;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -17,6 +19,8 @@ import java.util.List;
 public class Sale_Detail_Controller {
 
     private Sale_Detal_Service saleDetService;
+
+    private Product_Service productService;
 
     @Autowired
     public Sale_Detail_Controller(Sale_Detal_Service saleDetService) {
@@ -55,6 +59,14 @@ public class Sale_Detail_Controller {
     @DeleteMapping("/delete_saleDetail_by_ID/{id}")
     public ResponseEntity<String> eliminarVentaDetalle(@PathVariable("id") long id) {
         saleDetService.eliminarVentaDetalle(id);
+        return ResponseEntity.ok("Detalle de venta eliminado exitosamente");
+    }
+
+    @DeleteMapping("/delete_saleDetailV1")
+    public ResponseEntity<String> eliminarVentaDetalles(@RequestBody Sale_Detail_Entity ventaDetailleEliminar) {
+        //Buscamos y actualizamos stock
+        productService.actualizarStockProducto(ventaDetailleEliminar.getProduct_id(), ventaDetailleEliminar.getCantidad());
+        saleDetService.eliminarVentaDetalle(ventaDetailleEliminar.getSaleDet_id());
         return ResponseEntity.ok("Detalle de venta eliminado exitosamente");
     }
 

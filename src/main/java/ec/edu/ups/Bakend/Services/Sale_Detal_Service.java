@@ -45,7 +45,7 @@ public class Sale_Detal_Service {
     }
 
     public Sale_Detail_Entity buscarPorVentaDetalle_VentaID(long id) {
-        String jpql = "SELECT u FROM Sale_Entity u WHERE u.sale_id = :id";
+        String jpql = "SELECT u FROM Sale_Detail_Entity u WHERE u.sale_id = :id";
         Query query = entityManager.createQuery(jpql, Sale_Detail_Entity.class);
         query.setParameter("id", id);
         List<Sale_Detail_Entity> ventaDetalle = query.getResultList();
@@ -53,5 +53,12 @@ public class Sale_Detal_Service {
             return ventaDetalle.get(0);
         }
         return null;
+    }
+
+    public List<Sale_Detail_Entity> getListarVentasPorIDCabecera(long id) {
+        String jpql = "SELECT u FROM Sale_Detail_Entity u WHERE u.sale_id = :id";
+        Query query = entityManager.createQuery(jpql, Sale_Detail_Entity.class);
+        query.setParameter("id", id);
+        return query.getResultList();
     }
 }

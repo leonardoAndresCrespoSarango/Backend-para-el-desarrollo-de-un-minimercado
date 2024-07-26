@@ -79,4 +79,9 @@ public class Sale_Detail_Controller {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping("/list_salesDetallesIDVenta/{id}")
+    public List<Sale_Detail_Entity> obtenerTodosLosItemsPorIDVenta(@PathVariable("id") long id) {
+        return saleDetService.getListarVentasPorIDCabecera(id);
+    }
 }

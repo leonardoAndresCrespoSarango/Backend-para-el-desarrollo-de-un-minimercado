@@ -65,7 +65,12 @@ public class Sale_Service {
         return null;
     }
 
-
-
-
+    public Sale_Entity actualizarVentaPrecio(long id, double total) {
+        Sale_Entity ventaExistente = entityManager.find(Sale_Entity.class, id);
+        if (ventaExistente != null) {
+            ventaExistente.setTotal(total);
+            entityManager.merge(ventaExistente);
+        }
+        return ventaExistente;
+    }
 }

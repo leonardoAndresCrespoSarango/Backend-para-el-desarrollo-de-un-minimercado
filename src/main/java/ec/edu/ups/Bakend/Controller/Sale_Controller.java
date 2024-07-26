@@ -51,6 +51,16 @@ public class Sale_Controller {
         }
     }
 
+    @PutMapping("/update_saleV1/{id}")
+    public ResponseEntity<String> actualizarVentas(@PathVariable("id") long id, @RequestBody Sale_Entity ventaActualizado) {
+        Sale_Entity ventaActualizadoResultado = saleService.actualizarVentaPrecio(id, ventaActualizado.getTotal());
+        if (ventaActualizadoResultado != null) {
+            return ResponseEntity.ok("Venta actualizada exitosamente");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @Operation(summary = "Eliminar una venta", description = "Elimina una venta según su ID")
     @DeleteMapping("/delete_sale_by_ID/{id}")
     public ResponseEntity<String> eliminarVenta(@PathVariable("id") long id) {
